@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function savePedido() {
+        let pedido = {nombre:"" , monto: 0,  descuento: 0 }
+        pedido.nombre = $("#nombre").val();
+        pedido.monto = $("#monto").val();
+        pedido.descuento = $("#descuento").val();
+
+        $.ajax({
+            url: "http://localhost:8080/api/v1/pedidos/guardar",
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify(pedido),
+            success: function (pedido)
+            {
+                pedidoAddSuccess(pedido);
+            }
+        });
+    }
+    function pedidoAddSuccess(pedido) {
+        formClear();
+    }
+
+    function formClear() {
+        $("#nombre").val("");
+        $("#monto").val("");
+        $("#descuento").val("");
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos!</title>
+</head>
+<body>
+    <h1>Pedidos</h1>
+    <form>
+        <table>
+            <tr>
+                <td><label for="nombre">Nombre: </label></td>
+                <td><input id="nombre" type="text" maxlength="100" required></td>
+            </tr>
+            <tr>
+                <td><label for="monto">Monto: </label></td>
+                <td><input id="monto" type="number" required></td>
+            </tr>
+            <tr>
+                <td><label for="descuento">Descuento: </label>
+                <td><input id="descuento" type="number" required></td>
+            </tr>
+            <tr>
+                <td><button  type="submit" value="Guardar" onclick="savePedido()">Guardar</button></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
