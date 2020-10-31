@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 public class PedidoDaoImpl implements PedidoCustomRepository {
     @Override
     public void insertOrUpdate(Pedido pedido) {
-
+        //TODO:Implementar
     }
 
     @Override
     public Pedido select(Integer idPedido) {
+        //TODO:Implementar
         return null;
     }
 
